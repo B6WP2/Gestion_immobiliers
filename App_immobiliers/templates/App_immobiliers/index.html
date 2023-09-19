@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Biens Immobiliers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- Inclure ici vos liens vers les fichiers CSS et JavaScript nécessaires -->
+</head>
+<body>
+    <!-- header.html -->
+    <header class="panel-heading">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container-fluid">
+              <div class="logo">
+                <a class="navbar-brand me-2" href="">Votre Logo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+              </div>
+              <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav me-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Accueil</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'liste_biens_immobiliers' %}">Biens immobiliers</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'apropos' %}">À propos</a>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="text" placeholder="Search">
+                    <button class="btn btn-primary" type="button">Search</button>
+                </form>
+              </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="container-fluid panel-body">
+        <!-- Aperçu du site -->
+        <section class="site-preview">
+            <h1>Bienvenue sur la Gestion des Biens Immobiliers</h1>
+            <p>Découvrez notre large sélection de biens immobiliers disponibles.</p>
+            <p>Recherchez, explorez et trouvez votre maison de rêve.</p>
+        </section>        
+
+        <!-- Carte des biens immobiliers -->
+        <section class="property-cards">
+            {% for bien in biens %}
+                <div class="property-card">
+                    <h2>{{ bien.nom }}</h2>
+                    <p>Type : {{ bien.type }}</p>
+                    <p>Prix : {{ bien.prix }}</p>
+                    <p>Disponibilité : {% if bien.disponibilite %} Disponible {% else %} Non disponible {% endif %}</p>
+                    <p>Date d'ajout : {{ bien.date_ajout|date:"F d, Y" }}</p>
+                    <img src="{{ bien.images.url }}" alt="{{ bien.nom }}" class="property-image">
+                    <!-- Vous pouvez ajouter d'autres détails du bien ici -->
+                </div>
+            {% endfor %}
+        </section>        
+    </main>
+
+     <!-- Pied de page -->
+     <footer class="container-fluid footer">
+        <div class="row">
+            <div class="col">
+                <h3>Nous contacter</h3>
+                <ul>
+                    <li>Adresse : 123 Rue de l'Immobilia</li>
+                    <li>Téléphone : +123 456 789</li>
+                    <li>Email : contact@immobilierapp.com</li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>Suivez-nous</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>En Partenariats</h3>
+                <ul>
+                    <li>CITADEL</li>
+                    <li>UV-BF</li>
+                    <li>FD&IA</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row copyright">
+            <p>&copy; {{ year }} Gestion des Biens Immobiliers</p>
+        </div>
+    </footer>
+</body>
+</html>

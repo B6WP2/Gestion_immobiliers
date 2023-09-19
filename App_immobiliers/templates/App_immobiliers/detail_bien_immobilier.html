@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Bien Immobilier</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- Inclure ici vos liens vers les fichiers CSS et JavaScript nécessaires -->
+</head>
+<body>
+    <!-- header.html -->
+    <header class="panel-heading">
+        <!-- Inclure le contenu de votre en-tête global ici -->
+    </header>
+
+    <!-- Contenu principal -->
+    <!-- Contenu principal -->
+    <main class="container-fluid panel-body">
+       <div class="row">
+           <div class="col-md-6">
+               <!-- Affichage de l'image du bien immobilier -->
+               <img src="{{ bien.images.url }}" alt="{{ bien.nom }}" class="img-fluid" />
+           </div>
+           <div class="col-md-6">
+               <!-- Affichage des détails du bien immobilier -->
+               <h1>{{ bien.nom }}</h1>
+               <p>Type : {{ bien.type }}</p>
+               <p>Prix : {{ bien.prix }}</p>
+               <p>Disponibilité : {% if bien.disponibilite %}Disponible{% else %}Indisponible{% endif %}</p>
+               <p>Date d'ajout : {{ bien.date_ajout }}</p>
+               <!-- Ajoutez d'autres détails du bien ici -->
+           </div>
+       </div>
+   
+       <!-- Liste d'autres biens immobiliers -->
+       <h2>Autres biens immobiliers</h2>
+       <ul>
+           {% for autre_bien in autres_biens %}
+           <li>
+               <a href="{% url 'detail_bien_immobilier' autre_bien.id %}">{{ autre_bien.nom }}</a>
+           </li>
+           {% endfor %}
+       </ul>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="container-fluid footer">
+        <!-- Inclure le contenu de votre pied de page global ici -->
+    </footer>
+</body>
+</html>

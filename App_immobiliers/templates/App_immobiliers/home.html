@@ -1,0 +1,26 @@
+<body class="panel">
+    <!-- Contenu principal -->
+    <main class="container-fluid panel-body">
+        <!-- Aperçu du site -->
+        <section class="site-preview">
+            <h1>Bienvenue sur la Gestion des Biens Immobiliers</h1>
+            <p>Découvrez notre large sélection de biens immobiliers disponibles.</p>
+            <p>Recherchez, explorez et trouvez votre maison de rêve.</p>
+        </section>        
+
+        <!-- Carte des biens immobiliers -->
+        <section class="property-cards">
+            {% for bien in biens %}
+                <div class="property-card">
+                    <h2>{{ bien.nom }}</h2>
+                    <p>Type : {{ bien.type }}</p>
+                    <p>Prix : {{ bien.prix }}</p>
+                    <p>Disponibilité : {% if bien.disponibilite %} Disponible {% else %} Non disponible {% endif %}</p>
+                    <p>Date d'ajout : {{ bien.date_ajout|date:"F d, Y" }}</p>
+                    <img src="{{ bien.images.url }}" alt="{{ bien.nom }}" class="property-image">
+                    <!-- Vous pouvez ajouter d'autres détails du bien ici -->
+                </div>
+            {% endfor %}
+        </section>        
+    </main>
+</body>
