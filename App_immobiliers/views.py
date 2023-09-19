@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
-from .models import BienImmobilier  # Importez le modèle BienImmobilier
+# Importez le modèle BienImmobilier
+from .models import BienImmobilier 
 
 def index(request):
     context = {"message": "Hello World !"}
@@ -29,3 +30,27 @@ def detail_bien_immobilier(request, bien_id):
     autres_biens = BienImmobilier.objects.exclude(pk=bien_id)[:5] 
     context = {'bien': bien, 'autres_biens': autres_biens}
     return render(request, 'App_immobiliers/detail_bien_immobilier.html', context)
+
+# Vue pour gestion des utilisateurs
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, logout
+
+def gestion_utilisateur(request):
+    if request.method == 'POST':
+        # Si le formulaire d'inscription est soumis
+        if 'inscription' in request.POST:
+            form = UserCreationForm(request.POST)
+            if form.is_valid():
+                user = form.save()
+                login(request, user)
+                return redirect('accueil')  # Rediriger vers la page d'accueil après l'inscription
+        # Si le formulaire de connexion est soumis
+        elif 'connexion' in request.POST:
+            form = AuthenticationForm(request, data=request.POST)
+            if form.is_valid():
+                login(request, form.get_user())
+                return redirect('accueil')  # Rediriger vers la page d'accueil après la connexion
+    else:
+        form = UserCreationForm()  # Formulaire d'inscription par défaut
+
+    return render(request, 'registration/users.html', {'form': form})
