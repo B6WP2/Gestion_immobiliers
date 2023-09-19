@@ -38,8 +38,10 @@
                     <input class="form-control me-2" type="text" placeholder="Search">
                     <button class="btn btn-primary" type="button">Search</button>
                 </form>
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{% url 'gestion_utilisateur' %}" role="button" data-bs-toggle="dropdown">Utilisateur</a>
+                <div class="navbar-nav dropdown">
+                    <a class="navbar-brand dropdown-toggle" data-bs-toggle="dropdown" href="{% url 'gestion_utilisateur' %}">
+                        <img src="./assets/IMG_4219.JPG" alt="User" style="width:40px;" class="rounded-pill">
+                    </a>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="#">Connexion</a></li>
                       <li><a class="dropdown-item" href="#">Creez un compte</a></li>
