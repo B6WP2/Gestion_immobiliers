@@ -13,7 +13,7 @@ urlpatterns = [
     path('biens-immobiliers/', views.liste_biens_immobiliers, name='liste_biens_immobiliers'),
  
     # URL pour la gestion de l'utilisateur (connexion, inscription, etc.)
-    path('utilisateur/', views.gestion_utilisateur, name='gestion_utilisateur'),
-    # path('login/', CustomLoginView.as_view(), name='login'),
-    # path('logout/', CustomLogoutView.as_view(), name='logout'),
+    path('inscription/', views.inscription, name='inscription'),
+    path('connexion/', views.connexion, name='connexion'),
+    path('deconnexion/', views.deconnexion, name='deconnexion'),
 ]

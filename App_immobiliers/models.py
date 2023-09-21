@@ -11,3 +11,14 @@ class BienImmobilier(models.Model):
     def __str__(self):
         return self.nom
     
+    
+from django.contrib.auth.models import AbstractUser
+
+class CustomUser(AbstractUser):
+    # Ajoutez ici des champs supplémentaires si nécessaire
+    nom = models.CharField(max_length=255)
+    prenom = models.CharField(max_length=255)
+    telephone = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.username
