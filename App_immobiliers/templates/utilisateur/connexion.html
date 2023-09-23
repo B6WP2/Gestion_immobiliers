@@ -5,13 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - Gestion des Biens Immobiliers</title>
     <!-- Inclure ici vos liens vers les fichiers CSS et JavaScript nécessaires -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Connexion</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Se connecter</button>
-    </form>
+    <div class="container">
+        <h1 class="mt-5">Connexion</h1>
+        <form method="post">
+            {% csrf_token %}
+            
+            <!-- Champ "Nom d'utilisateur" -->
+            <div class="mb-3">
+                <label for="{{ form.username.id_for_label }}" class="form-label">Nom d'utilisateur :</label>
+                {{ form.username }}
+            </div>
+            
+            <!-- Champ "Mot de passe" -->
+            <div class="mb-3">
+                <label for="{{ form.password.id_for_label }}" class="form-label">Mot de passe :</label>
+                {{ form.password }}
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+            <a  class="btn btn-success" href="{% url 'inscription' %}">Créez un compte</a>
+        </form>
+    </div>
 </body>
 </html>

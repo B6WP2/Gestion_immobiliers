@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supprimer un Bien Immobilier</title>
+    <!-- Inclure ici vos liens vers les fichiers CSS et JavaScript nécessaires, y compris Bootstrap -->
+    <link rel="stylesheet" href="chemin_vers_bootstrap.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Supprimer un Bien Immobilier</h1>
+        <p>Êtes-vous sûr de vouloir supprimer ce bien immobilier ? Cette action est irréversible.</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
+        </form>
+    </div>
+</body>
+</html>
