@@ -1,0 +1,18 @@
+<!-- Template utilisateur/profil.html -->
+{% extends "shareds/pop-up.html" %}
+
+
+{% block title %}Profil de {{ user.username }}{% endblock %}
+{% block content %}
+<h1>Profil de {{ user.username }}</h1>
+<p>Nom d'utilisateur : {{ user.username }}</p>
+<p>Nom : {{ user.utilisateur.nom }}</p>
+<p>Prénom : {{ user.utilisateur.prenom }}</p>
+<p>Adresse e-mail : {{ user.email }}</p>
+<p>Téléphone : {{ user.utilisateur.telephone }}</p>
+
+<!-- Ajoutez des liens pour modifier le profil, se déconnecter ou supprimer le compte -->
+<a href="{% url 'modifier_profil' %}">Modifier le profil</a>
+<a href="{% url 'deconnexion' %}">Se déconnecter</a>
+<a href="{% url 'suppression_compte' %}">Supprimer le compte</a>
+{% endblock %}

@@ -1,8 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser, BienImmobilier  # Assurez-vous d'importer le modèle CustomUser depuis votre application
+# Assurez-vous d'importer le modèle CustomUser depuis votre application
+from .models import CustomUser, BienImmobilier  
 
-class ConnexionForm(forms.Form):  # Utilisez `forms.Form` au lieu de `UserCreationForm` pour le formulaire de connexion
+# Utilisez `forms.Form` au lieu de `UserCreationForm` pour le formulaire de connexion
+class ConnexionForm(forms.Form):  
     username = forms.CharField(label="Nom d'utilisateur")
     password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput)
 
@@ -17,6 +19,16 @@ class InscriptionForm(UserCreationForm):
         model = CustomUser  # Spécifiez le modèle CustomUser
         fields = UserCreationForm.Meta.fields  # Utilisez les champs du modèle par défaut
 
+class ProfilForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser  # Utilisez votre modèle d'utilisateur personnalisé
+        fields = ['nom', 'prenom', 'email', 'telephone']  # Liste des champs à inclure dans le formulaire de mise à jour
+        
+class SuppressionCompteForm(forms.Form):
+    confirmation = forms.BooleanField(
+        required=True,
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+    )
         
 class BienImmobilierForm(forms.ModelForm):
     class Meta:

@@ -1,0 +1,12 @@
+{% extends 'shareds/pop-up.html' %}
+
+{% block title %}Modifier le profil{% endblock %}
+{% block content %}
+<h1>Modifier le profil</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Enregistrer les modifications</button>
+</form>
+<a href="{% url 'profil' %}">Annuler</a>
+{% endblock %}

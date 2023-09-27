@@ -1,0 +1,12 @@
+{% extends "shareds/pop-up.html" %}
+
+{% block title %}Confirmation de suppression de compte{% endblock %}
+{% block content %}
+<h1>Confirmation de suppression de compte</h1>
+<p>Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirmer la suppression<</button>
+    <a href="{% url 'profil' %}" class="btn btn-secondary">Annuler</a>
+</form>
+{% endblock %}

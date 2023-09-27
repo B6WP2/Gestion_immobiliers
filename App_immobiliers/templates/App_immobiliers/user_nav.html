@@ -1,0 +1,27 @@
+<div>
+    <ul class="navbar-nav ml-auto">
+        {% if user.is_logged_in %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="{{ user.get_profile_image }}" alt="Profile" class="profile-image">
+                    <!--{{ user.get_full_name }}-->
+                </a>
+                <div class="dropdown-menu" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="{{ user.get_profile_url }}">Profil</a>
+                    <a class="dropdown-item" href="{{ user.get_logout_url }}">Déconnexion</a>
+                </div>
+            </li>
+        {% else %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="guestDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <!-- Ajoutez ici l'icône de votre choix pour l'utilisateur non connecté -->
+                    <i class="fa fa-user"></i> 
+                </a>
+                <div class="dropdown-menu" aria-labelledby="guestDropdown">
+                    <a class="dropdown-item" href="{% url 'connexion' %}">Connexion</a>
+                    <a class="dropdown-item" href="{% url 'inscription' %}">Création de compte</a>
+                </div>
+            </li>
+        {% endif %}
+    </ul>
+</div>
